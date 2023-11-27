@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Chomba</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Agrega el enlace a la biblioteca Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+   
+<body>
+
+<!-- Encabezado -->
+<header>
+    <h1>Restaurante Chomba</h1>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+            <li><a href="#acerca">Acerca de</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<!-- Sección de Inicio -->
+<section id="inicio">
+    <h2>Bienvenidos a Restaurante Chomba</h2>
+    <!-- Aquí puedes agregar imágenes atractivas de tus platos -->
+    <p>Horarios de atención: Lunes a Domingo de 6:00 AM a 3:00 PM</p>
+    <p>Servimos deliciosos platos de la cocina Peruana en un ambiente acogedor.</p>
+</section>
+
+<!-- Sección de Menú -->
+<section id="menu">
+    <h2>Menú</h2>
+    <p>Descarga nuestro menú:</p>
+    <a href="menu.pdf" target="_blank">Menú del día (PDF)</a>
+    <a href="menu_carta.pdf" target="_blank">Menú a la carta (PDF)</a>
+    <a href="menu_para_llevar.pdf" target="_blank">Menú para llevar (PDF)</a>
+    <a href="menu_bebidas.pdf" target="_blank">Menú de bebidas (PDF)</a>
+</section>
+
+<!-- Sección de Reservas -->
+<section id="reservas">
+    <h2>Reservas</h2>
+    <p>Realiza una reserva en línea o contáctanos:</p>
+    <!-- Aquí puedes agregar un formulario de reserva o información de contacto -->
+    <form action="reserva.php" method="post">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" class="form-control" id="telefono" name="telefono" required>
+        </div>
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input type="date" class="form-control" id="fecha" name="fecha" required>
+        </div>
+        <div class="form-group">
+          <label for="hora">Hora</label>
+          <input type="time" class="form-control" id="hora" name="hora" required>
+        </div>
+        <div class="form-group">
+          <label for="numero_personas">Número de personas</label>
+          <input
+            type="number"
+            class="form-control"
+            id="numero_personas"
+            name="numero_personas"
+            onchange="updateDishFields()"
+            required
+          >
+        </div>
+      
+        <div class="platos-a-preparar">
+          <h2>Platos a preparar</h2>
+          <p>Por favor, indique los platos que desea preparar:</p>
+          <ul id="dish-fields"></ul>
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+      
+      <script>
+        function updateDishFields() {
+          const numberOfPeople = document.getElementById('numero_personas').value;
+          const dishFields = document.getElementById('dish-fields');
+      
+          // Remove existing dish fields
+          while (dishFields.firstChild) {
+            dishFields.removeChild(dishFields.firstChild);
+          }
+      
+          // Add dish fields based on the number of people
+          for (let i = 1; i <= numberOfPeople; i++) {
+            const dishLabel = document.createElement('label');
+            dishLabel.textContent = `Plato ${i}:`;
+            dishLabel.setAttribute('for', `plato_${i}`);
+      
+            const dishInput = document.createElement('input');
+            dishInput.type = 'text';
+            dishInput.className = 'form-control';
+            dishInput.id = `plato_${i}`;
+            dishInput.name = `plato_${i}`;
+            dishInput.required = true;
+      
+            const dishListItem = document.createElement('li');
+            dishListItem.appendChild(dishLabel);
+            dishListItem.appendChild(dishInput);
+      
+            dishFields.appendChild(dishListItem);
+          }
+        }
+      
+      </script>
+      <script src="carta.js"></script>
+
+      
+      
+      
+</section>
+
+<!-- Sección de Ubicación y Horarios -->
+<section id="ubicacion">
+    <h2>Ubicación y Horarios</h2>
+    <!-- Agrega un mapa con la ubicación de tu restaurante -->
+    <p>Dirección: Dirección de tu restaurante</p>
+    <p>Horarios: Lunes a Domingo de 6:00 AM a 3:00 PM</p>
+
+    <!-- <p>Estacionamiento disponible</p>-->
+</section>
+
+<!-- Sección Acerca de -->
+<section id="acerca">
+    <h2>Acerca de</h2>
+    <p>Descubre nuestra historia, filosofía culinaria y conoce a nuestro chef y equipo.</p>
+</section>
+
+<!-- Galería de Fotos -->
+<section id="galeria">
+    <h2>Galería de Fotos</h2>
+    <!-- Muestra imágenes atractivas de tus platos, interior del restaurante, eventos especiales, etc. -->
+</section>
+
+<!-- Testimonios -->
+<section id="testimonios">
+    <h2>Testimonios</h2>
+    <!-- Publica opiniones de clientes satisfechos o reseñas de tu restaurante -->
+</section>
+
+<!-- Eventos y Promociones -->
+<section id="eventos">
+    <h2>Se prepara platos para Eventos y Promociones</h2>
+    <!-- Anuncia eventos especiales y promociones que ofreces en tu restaurante -->
+</section>
+
+<!-- Blog o Recetas -->
+<section id="blog">
+    <h2>Blog o Recetas</h2>
+    <!-- Comparte recetas, historias culinarias o consejos relacionados con la comida en esta sección -->
+</section>
+
+<!-- Sección de Contacto -->
+<section id="contacto">
+    <h2>Contacto</h2>
+    <div class="social-icons">
+        <a href="https://api.whatsapp.com/send/?phone=%2B51913164337&text&type=phone_number&app_absent=0" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100086911989510&mibextid=ZbWKwL" class="icon facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    
+    <a href="tel:+51913164337">Contáctanos</a>
+    <!-- Proporciona información de contacto, como dirección, número de teléfono, correo electrónico y un formulario de contacto -->
+</section>
+
+<!-- Pie de Página -->
+<footer>
+    <p>© 2023 Restaurante Chomba. Todos los derechos reservados.</p>
+    <a href="politica_de_reservas.html">Política de Reservas</a>
+    <a href="politica_de_privacidad.html">Política de Privacidad</a>
+    <a href="terminos_de_uso.html">Términos de Uso</a>
+</footer>
+
+</body>
+</html>
